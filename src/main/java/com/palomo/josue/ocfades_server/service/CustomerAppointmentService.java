@@ -2,6 +2,7 @@ package com.palomo.josue.ocfades_server.service;
 
 import com.palomo.josue.ocfades_server.entities.CustomerAppointment;
 import com.palomo.josue.ocfades_server.repository.CustomerAppointmentRepository;
+import jakarta.persistence.Id;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,6 +16,6 @@ public class CustomerAppointmentService {
     }
 
     public Optional<CustomerAppointment> getCustomerAppointmentById(Long id) {
-        return customerAppointmentRepository.findById(id);
+        return Optional.of(customerAppointmentRepository.getReferenceById(id));
     }
 }
