@@ -24,6 +24,10 @@ public class CustomerAppointment {
     @Column(name = "customer_phone_number")
     private String customerPhoneNumber;
 
+    private CustomerAppointment() {
+
+    }
+
     public CustomerAppointment(Long id, Date startDateTime, Long barberServiceId, String customerFirstName, String customerLastName, String customerEmailAddress, String customerPhoneNumber) {
         this.id = id;
         this.startDateTime = startDateTime;

@@ -20,6 +20,7 @@ public class CustomerAppointmentController {
 
     @GetMapping("/{id}")
     public Optional<CustomerAppointment> getCustomerAppointmentById(@PathVariable Long id) {
+        System.out.println("Inside of the `getCustomerAppointmentsById` handler function...");
         return customerAppointmentService.getCustomerAppointmentById(id);
     }
 }
