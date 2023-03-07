@@ -21,8 +21,13 @@ public class CustomerAppointmentController {
         return customerAppointmentService.getCustomerAppointmentById(id);
     }
 
-    @PostMapping("")
+    @PostMapping
     public @ResponseBody Long createCustomerAppointment(@RequestBody CustomerAppointment customerAppointment) {
         return customerAppointmentService.createCustomerAppointment(customerAppointment);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteCustomerAppointmentById(@PathVariable Long id) {
+        customerAppointmentService.deleteCustomerAppointmentById(id);
     }
 }

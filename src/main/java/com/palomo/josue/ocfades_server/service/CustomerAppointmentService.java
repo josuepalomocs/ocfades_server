@@ -26,4 +26,8 @@ public class CustomerAppointmentService {
         CustomerAppointment queryResult = customerAppointmentRepository.save(customerAppointment);
         return queryResult.getId();
     }
+
+    public void deleteCustomerAppointmentById(Long id) {
+        customerAppointmentRepository.deleteById(id);
+    }
 }
