@@ -2,10 +2,7 @@ package com.palomo.josue.ocfades_server.controller;
 
 import com.palomo.josue.ocfades_server.entities.CustomerAppointment;
 import com.palomo.josue.ocfades_server.service.CustomerAppointmentService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/customer-appointments")
