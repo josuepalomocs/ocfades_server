@@ -24,7 +24,7 @@ public class CustomerAppointment {
     @Column(name = "customer_phone_number")
     private String customerPhoneNumber;
 
-    private CustomerAppointment() {
+    public CustomerAppointment() {
 
     }
 

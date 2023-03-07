@@ -2,9 +2,11 @@ package com.palomo.josue.ocfades_server.service;
 
 import com.palomo.josue.ocfades_server.entities.CustomerAppointment;
 import com.palomo.josue.ocfades_server.repository.CustomerAppointmentRepository;
-import jakarta.persistence.Id;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -15,7 +17,11 @@ public class CustomerAppointmentService {
         this.customerAppointmentRepository = customerAppointmentRepository;
     }
 
-    public Optional<CustomerAppointment> getCustomerAppointmentById(Long id) {
-        return Optional.of(customerAppointmentRepository.getReferenceById(id));
+    public CustomerAppointment getCustomerAppointmentById(Long id) {
+        try {
+            return customerAppointmentRepository.findById(id).get();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
 }

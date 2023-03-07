@@ -2,10 +2,8 @@ package com.palomo.josue.ocfades_server.controller;
 
 import com.palomo.josue.ocfades_server.entities.CustomerAppointment;
 import com.palomo.josue.ocfades_server.service.CustomerAppointmentService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -19,8 +17,7 @@ public class CustomerAppointmentController {
     }
 
     @GetMapping("/{id}")
-    public Optional<CustomerAppointment> getCustomerAppointmentById(@PathVariable Long id) {
-        System.out.println("Inside of the `getCustomerAppointmentsById` handler function...");
+    public @ResponseBody CustomerAppointment getCustomerAppointmentById(@PathVariable Long id) {
         return customerAppointmentService.getCustomerAppointmentById(id);
     }
 }
