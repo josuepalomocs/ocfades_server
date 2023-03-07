@@ -20,4 +20,9 @@ public class CustomerAppointmentController {
     public @ResponseBody CustomerAppointment getCustomerAppointmentById(@PathVariable Long id) {
         return customerAppointmentService.getCustomerAppointmentById(id);
     }
+
+    @PostMapping("")
+    public @ResponseBody Long createCustomerAppointment(@RequestBody CustomerAppointment customerAppointment) {
+        return customerAppointmentService.createCustomerAppointment(customerAppointment);
+    }
 }

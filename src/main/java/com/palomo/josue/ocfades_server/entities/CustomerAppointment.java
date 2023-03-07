@@ -1,6 +1,7 @@
 package com.palomo.josue.ocfades_server.entities;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -12,6 +13,7 @@ public class CustomerAppointment {
     private Long id;
 
     @Column(name = "start_date_time")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date startDateTime;
     @Column(name = "barber_service_id")
     private Long barberServiceId;
