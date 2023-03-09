@@ -1,8 +1,5 @@
 package com.palomo.josue.ocfades_server.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.github.fge.jsonpatch.JsonPatch;
-import com.github.fge.jsonpatch.JsonPatchException;
 import com.palomo.josue.ocfades_server.entities.BarberService;
 import com.palomo.josue.ocfades_server.service.BarberServiceService;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +24,9 @@ public class BarberServiceController {
     }
 
     @PutMapping("/{id}")
-    public @ResponseBody Long patchBarberService(@PathVariable Long id, @RequestBody BarberService barberService) {
+    public @ResponseBody Long updateBarberService(@PathVariable Long id, @RequestBody BarberService barberService) {
         return barberServiceService.updateBarberService(id, barberService);
     }
-
 
     @DeleteMapping("/{id}")
     public void deleteBarberServiceById(@PathVariable Long id) {
