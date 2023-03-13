@@ -3,7 +3,9 @@ package com.palomo.josue.ocfades_server.entities;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class CustomerAppointment {
@@ -12,33 +14,32 @@ public class CustomerAppointment {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "start_date_time")
+    @Column(name = "date", nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private Date startDateTime;
-    @Column(name = "barber_service_id")
-    private Long barberServiceId;
-    @Column(name = "customer_first_name")
-    private String customerFirstName;
-    @Column(name = "customer_last_name")
-    private String customerLastName;
-    @Column(name = "customer_email_address")
-    private String customerEmailAddress;
-    @Column(name = "customer_phone_number")
-    private String customerPhoneNumber;
+    private LocalDate date;
 
-    public CustomerAppointment() {
+    @Column(name = "time", nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+    private LocalTime time;
 
-    }
+    @ManyToOne
+    @JoinColumn(name = "barber_service_id", nullable = false)
+    private BarberService barberService;
 
-    public CustomerAppointment(Long id, Date startDateTime, Long barberServiceId, String customerFirstName, String customerLastName, String customerEmailAddress, String customerPhoneNumber) {
-        this.id = id;
-        this.startDateTime = startDateTime;
-        this.barberServiceId = barberServiceId;
-        this.customerFirstName = customerFirstName;
-        this.customerLastName = customerLastName;
-        this.customerEmailAddress = customerEmailAddress;
-        this.customerPhoneNumber = customerPhoneNumber;
-    }
+    @ManyToOne
+    @JoinColumn(name = "status_id", nullable = false)
+    private CustomerAppointmentStatus status;
+
+    @Column(name = "customer_id", nullable = false)
+    private String customerId;
+
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "last_modified_at", nullable = false)
+    private LocalDateTime lastModifiedAt;
+
+    public CustomerAppointment() {}
 
     public Long getId() {
         return id;
@@ -48,51 +49,59 @@ public class CustomerAppointment {
         this.id = id;
     }
 
-    public Date getStartDateTime() {
-        return startDateTime;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public Long getBarberServiceId() {
-        return barberServiceId;
+    public LocalTime getTime() {
+        return time;
     }
 
-    public void setBarberServiceId(Long barberServiceId) {
-        this.barberServiceId = barberServiceId;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
-    public String getCustomerFirstName() {
-        return customerFirstName;
+    public BarberService getBarberService() {
+        return barberService;
     }
 
-    public void setCustomerFirstName(String customerFirstName) {
-        this.customerFirstName = customerFirstName;
+    public void setBarberService(BarberService barberService) {
+        this.barberService = barberService;
     }
 
-    public String getCustomerLastName() {
-        return customerLastName;
+    public CustomerAppointmentStatus getStatus() {
+        return status;
     }
 
-    public void setCustomerLastName(String customerLastName) {
-        this.customerLastName = customerLastName;
+    public void setStatus(CustomerAppointmentStatus status) {
+        this.status = status;
     }
 
-    public String getCustomerEmailAddress() {
-        return customerEmailAddress;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomerEmailAddress(String customerEmailAddress) {
-        this.customerEmailAddress = customerEmailAddress;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public String getCustomerPhoneNumber() {
-        return customerPhoneNumber;
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCustomerPhoneNumber(String customerPhoneNumber) {
-        this.customerPhoneNumber = customerPhoneNumber;
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getLastModifiedAt() {
+        return lastModifiedAt;
+    }
+
+    public void setLastModifiedAt(LocalDateTime lastModifiedAt) {
+        this.lastModifiedAt = lastModifiedAt;
     }
 }

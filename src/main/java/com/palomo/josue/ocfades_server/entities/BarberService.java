@@ -1,9 +1,8 @@
 package com.palomo.josue.ocfades_server.entities;
 
 import jakarta.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.util.List;
 
 @Entity
 public class BarberService {
@@ -14,21 +13,17 @@ public class BarberService {
 
     @Column(name = "name")
     private String name;
+
     @Column(name = "duration_in_minutes")
     private int durationInMinutes;
+
     @Column(name = "price_in_usd")
-    private int priceInUSD;
+    private int priceInUsd;
 
-    public BarberService() {
+    @OneToMany(mappedBy = "barberService")
+    private List<CustomerAppointment> customerAppointments;
 
-    }
-
-    public BarberService(Long id, String name, int durationInMinutes, int priceInUSD) {
-        this.id = id;
-        this.name = name;
-        this.durationInMinutes = durationInMinutes;
-        this.priceInUSD = priceInUSD;
-    }
+    public BarberService() {}
 
     public Long getId() {
         return id;
@@ -54,11 +49,19 @@ public class BarberService {
         this.durationInMinutes = durationInMinutes;
     }
 
-    public int getPriceInUSD() {
-        return priceInUSD;
+    public int getPriceInUsd() {
+        return priceInUsd;
     }
 
-    public void setPriceInUSD(int priceInUSD) {
-        this.priceInUSD = priceInUSD;
+    public void setPriceInUSD(int priceInUsd) {
+        this.priceInUsd = priceInUsd;
+    }
+
+    public List<CustomerAppointment> getCustomerAppointments() {
+        return customerAppointments;
+    }
+
+    public void setCustomerAppointments(List<CustomerAppointment> customerAppointments) {
+        this.customerAppointments = customerAppointments;
     }
 }

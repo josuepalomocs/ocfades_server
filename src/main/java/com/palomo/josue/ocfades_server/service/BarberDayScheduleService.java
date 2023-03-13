@@ -1,9 +1,12 @@
 package com.palomo.josue.ocfades_server.service;
 
+import com.palomo.josue.ocfades_server.entities.BarberBreak;
 import com.palomo.josue.ocfades_server.entities.BarberDaySchedule;
 import com.palomo.josue.ocfades_server.repository.BarberDayScheduleRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BarberDayScheduleService {
@@ -23,6 +26,12 @@ public class BarberDayScheduleService {
 
     public Long createBarberDaySchedule(BarberDaySchedule barberDaySchedule) {
         BarberDaySchedule queryResult = barberDayScheduleRepository.save(barberDaySchedule);
+        List<BarberBreak> barberBreaks =  queryResult.getBarberBreaks();
+        for(BarberBreak barberBreak : barberBreaks) {
+            barberBreak.setBarberDaySchedule(queryResult);
+        }
+        queryResult.setBarberBreaks(barberBreaks);
+        barberDayScheduleRepository.save(queryResult);
         return queryResult.getId();
     }
 

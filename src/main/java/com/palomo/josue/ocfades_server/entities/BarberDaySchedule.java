@@ -2,6 +2,9 @@ package com.palomo.josue.ocfades_server.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalTime;
+import java.util.List;
+
 @Entity
 public class BarberDaySchedule {
     @Id
@@ -9,23 +12,17 @@ public class BarberDaySchedule {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "day")
-    private int day;
+    @OneToOne
+    @JoinColumn(name = "day_of_week_id")
+    private DayOfWeek dayOfWeek;
     @Column(name = "open_time")
-    private int openTime;
+    private LocalTime openTime;
     @Column(name = "close_time")
-    private int closeTime;
+    private LocalTime closeTime;
+    @OneToMany(mappedBy = "barberDaySchedule", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<BarberBreak> barberBreaks;
 
-    public BarberDaySchedule() {
-
-    }
-
-    public BarberDaySchedule(Long id, int day, int openTime, int closeTime) {
-        this.id = id;
-        this.day = day;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
-    }
+    public BarberDaySchedule() {}
 
     public Long getId() {
         return id;
@@ -35,27 +32,35 @@ public class BarberDaySchedule {
         this.id = id;
     }
 
-    public int getDay() {
-        return day;
+    public DayOfWeek getDayOfWeek() {
+        return dayOfWeek;
     }
 
-    public void setDay(int day) {
-        this.day = day;
+    public void setDayOfWeek(DayOfWeek dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 
-    public int getOpenTime() {
+    public LocalTime getOpenTime() {
         return openTime;
     }
 
-    public void setOpenTime(int openTime) {
+    public void setOpenTime(LocalTime openTime) {
         this.openTime = openTime;
     }
 
-    public int getCloseTime() {
+    public LocalTime getCloseTime() {
         return closeTime;
     }
 
-    public void setCloseTime(int closeTime) {
+    public void setCloseTime(LocalTime closeTime) {
         this.closeTime = closeTime;
+    }
+
+    public List<BarberBreak> getBarberBreaks() {
+        return barberBreaks;
+    }
+
+    public void setBarberBreaks(List<BarberBreak> barberBreaks) {
+        this.barberBreaks = barberBreaks;
     }
 }
