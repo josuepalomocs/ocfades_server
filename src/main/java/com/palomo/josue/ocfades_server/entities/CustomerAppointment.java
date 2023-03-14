@@ -34,9 +34,11 @@ public class CustomerAppointment {
     private String customerId;
 
     @Column(name = "created_at", nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime createdAt;
 
     @Column(name = "last_modified_at", nullable = false)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime lastModifiedAt;
 
     public CustomerAppointment() {}

@@ -4,5 +4,5 @@ import com.palomo.josue.ocfades_server.entities.BarberDaySchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BarberDayScheduleRepository extends JpaRepository<BarberDaySchedule, Long> {
-
+    public BarberDaySchedule getBarberDayScheduleByDayOfWeek_DayNumber(int dayNumber);
 }

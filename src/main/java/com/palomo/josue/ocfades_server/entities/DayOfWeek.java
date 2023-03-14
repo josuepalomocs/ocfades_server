@@ -10,8 +10,11 @@ public class DayOfWeek {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "day_of_week")
-    private int dayOfWeek;
+    @Column(name = "day_number")
+    private int dayNumber;
+
+    @Column(name = "day_name")
+    private String dayName;
 
     @OneToOne(mappedBy = "dayOfWeek")
     private BarberDaySchedule barberDaySchedule;
@@ -26,12 +29,20 @@ public class DayOfWeek {
         this.id = id;
     }
 
-    public int getDayOfWeek() {
-        return dayOfWeek;
+    public int getDayNumber() {
+        return dayNumber;
     }
 
-    public void setDayOfWeek(int dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
+    public void setDayNumber(int dayOfWeek) {
+        this.dayNumber = dayOfWeek;
+    }
+
+    public String getDayName() {
+        return dayName;
+    }
+
+    public void setDayName(String dayName) {
+        this.dayName = dayName;
     }
 
     public BarberDaySchedule getBarberDaySchedule() {
