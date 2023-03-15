@@ -5,12 +5,18 @@ import com.palomo.josue.ocfades_server.repository.BarberServiceRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BarberServiceService {
     private final BarberServiceRepository barberServiceRepository;
 
     public BarberServiceService(BarberServiceRepository barberServiceRepository) {
         this.barberServiceRepository = barberServiceRepository;
+    }
+
+    public List<BarberService> getBarberServices() {
+        return barberServiceRepository.findAll();
     }
 
     public BarberService getBarberServiceById(Long id) {

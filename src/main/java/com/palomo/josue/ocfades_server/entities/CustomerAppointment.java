@@ -22,7 +22,7 @@ public class CustomerAppointment {
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime time;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "barber_service_id", nullable = false)
     private BarberService barberService;
 

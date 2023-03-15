@@ -1,5 +1,6 @@
 package com.palomo.josue.ocfades_server.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,7 +21,8 @@ public class BarberService {
     @Column(name = "price_in_usd")
     private int priceInUsd;
 
-    @OneToMany(mappedBy = "barberService")
+    @OneToMany(mappedBy = "barberService", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CustomerAppointment> customerAppointments;
 
     public BarberService() {}
